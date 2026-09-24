@@ -1,0 +1,806 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Portfolio de Sara, étudiante en BTS SIO option SLAM.">
+    <title>Portfolio | Sara - BTS SIO SLAM</title>
+    <style>
+        :root {
+            --brun: #081a4b;
+            --orange: #0c0857;
+            --creme: #d0ddff;
+            --blanc: #ffffff;
+            --texte: #0c131c;
+            --gris: #68717b;
+            --bordure: #dedbd5;
+        }
+
+        * {
+            box-sizing: border-box;
+            scroll-behavior: smooth;
+        }
+
+        body {
+            margin: 0;
+            color: var(--texte);
+            background: var(--blanc);
+            font-family: Arial, Helvetica, sans-serif;
+            line-height: 1.45;
+        }
+
+        a {
+            color: inherit;
+            text-decoration: none;
+        }
+
+        .barre-laterale {
+            position: fixed;
+            inset: 0 auto 0 0;
+            width: 216px;
+            height: 100vh;
+            overflow-y: auto;
+            padding: 2rem 1.25rem 1.25rem;
+            color: #fff;
+            background: var(--brun);
+        }
+
+        .identite {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 0;
+            text-align: center;
+        }
+
+        .identite h2 {
+            margin: 0 0 0.35rem;
+            font-size: 0.95rem;
+            letter-spacing: 0.02em;
+        }
+
+        .identite p {
+            margin: 0;
+            color: #e4dbd4;
+            font-size: 0.76rem;
+        }
+
+        .separateur-lateral {
+            margin: 0.9rem 0;
+            border: 0;
+            border-top: 1px solid rgba(255, 255, 255, 0.35);
+        }
+
+        nav {
+            display: grid;
+            gap: 0.35rem;
+        }
+
+        nav a {
+            display: block;
+            padding: 0.3rem 0.25rem;
+            color: #f5efea;
+            font-size: 0.82rem;
+            transition: color 0.2s, transform 0.2s;
+        }
+
+        nav a:hover,
+        nav a:focus-visible {
+            color: #7c81e9;
+            transform: translateX(3px);
+        }
+
+        nav a::before {
+            display: inline-block;
+            width: 1.35rem;
+            color: #fff;
+            content: "•";
+            font-size: 1.1rem;
+            vertical-align: -0.08rem;
+        }
+
+        .coordonnees-laterales {
+            display: grid;
+            gap: 0.25rem;
+        }
+
+        .coordonnees-laterales a {
+            padding: 0.3rem 0.25rem;
+            color: #aeb4bd;
+            font-size: 0.72rem;
+            text-decoration: none;
+        }
+
+        .coordonnees-laterales a:hover,
+        .coordonnees-laterales a:focus-visible {
+            color: #aeb4bd;
+            text-decoration: underline;
+            transform: none;
+        }
+
+        .coordonnees-laterales a::before {
+            display: none;
+        }
+
+        main,
+        footer {
+            margin-left: 216px;
+        }
+
+        .conteneur {
+            width: min(90% - 7rem, 1030px);
+            margin: 0 auto;
+        }
+
+        .hero {
+            min-height: 394px;
+            padding: 3.8rem 0 3.3rem;
+        }
+
+        .surtitre,
+        section > h2 {
+            color: var(--orange);
+            font-size: 0.78rem;
+            font-weight: 700;
+            letter-spacing: 0.08em;
+            text-transform: uppercase;
+        }
+
+        .surtitre {
+            margin: 0 0 0.8rem;
+        }
+
+        h1 {
+            max-width: 920px;
+            margin: 0;
+            color: #263241;
+            font-size: clamp(2.4rem, 5vw, 4rem);
+            line-height: 1.08;
+        }
+
+        .hero h1 span {
+            display: block;
+            color: #111c2b;
+        }
+
+        .introduction {
+            margin: 1.35rem 0 0;
+            color: var(--gris);
+            font-size: 0.98rem;
+        }
+
+        .actions {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.9rem;
+            margin-top: 2.3rem;
+        }
+
+        .bouton {
+            display: inline-block;
+            padding: 0.72rem 1.35rem;
+            border: 1px solid #8f8b85;
+            border-radius: 5px;
+            color: #303030;
+            background: transparent;
+            font-size: 0.82rem;
+            font-weight: 700;
+            transition: color 0.2s, background 0.2s;
+        }
+
+        .bouton:hover,
+        .bouton:focus-visible {
+            color: #fff;
+            background: var(--orange);
+            border-color: var(--orange);
+        }
+
+        section {
+            padding: 3.7rem 0 4.5rem;
+        }
+
+        #apropos {
+            background: var(--creme);
+        }
+
+        section > h2 {
+            margin: 0 0 1.1rem;
+        }
+
+        h3 {
+            margin: 0;
+            font-size: 1.8rem;
+            line-height: 1.2;
+        }
+
+        .profil {
+            display: grid;
+            grid-template-columns: minmax(0, 1fr) 312px;
+            gap: 4rem;
+            align-items: start;
+        }
+
+        .profil > div > h3 {
+            margin-bottom: 2.4rem;
+        }
+
+        .profil-texte {
+            max-width: 650px;
+            margin: 0;
+            color: #3e454d;
+            font-size: 0.88rem;
+        }
+
+        .carte {
+            padding: 2.15rem 1.55rem;
+            border: 1px solid var(--bordure);
+            border-radius: 8px;
+            background: var(--blanc);
+            box-shadow: 0 1px 3px rgba(47, 33, 24, 0.04);
+        }
+
+        .carte h3 {
+            margin-bottom: 1.15rem;
+            color: var(--orange);
+            font-size: 1rem;
+        }
+
+        .carte p {
+            margin: 0;
+            color: #4d535a;
+            font-size: 0.82rem;
+        }
+
+        .contact-actions {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.8rem;
+            margin-top: 1.3rem;
+        }
+
+        .contact-contenu {
+            display: grid;
+            grid-template-columns: repeat(2, minmax(0, 1fr));
+            gap: 1.5rem;
+            margin-top: 1.5rem;
+        }
+
+        .contact-bloc {
+            min-width: 0;
+        }
+
+        .contact-bloc h3 {
+            margin-bottom: 0.8rem;
+            color: var(--orange);
+            font-size: 1rem;
+        }
+
+        .carte-interactive {
+            width: 100%;
+            min-height: 280px;
+            border: 0;
+            border-radius: 6px;
+        }
+
+        .formulaire-contact {
+            display: grid;
+            gap: 0.8rem;
+        }
+
+        .formulaire-contact label {
+            color: #4d535a;
+            font-size: 0.82rem;
+            font-weight: 700;
+        }
+
+        .formulaire-contact input,
+        .formulaire-contact textarea {
+            width: 100%;
+            margin-top: 0.3rem;
+            padding: 0.7rem;
+            border: 1px solid var(--bordure);
+            border-radius: 5px;
+            color: var(--texte);
+            background: var(--blanc);
+            font: inherit;
+        }
+
+        .formulaire-contact textarea {
+            min-height: 125px;
+            resize: vertical;
+        }
+
+        .formulaire-contact input:focus,
+        .formulaire-contact textarea:focus {
+            outline: 2px solid var(--orange);
+            outline-offset: 1px;
+        }
+
+        .message-formulaire {
+            margin: 0;
+            color: var(--gris);
+            font-size: 0.8rem;
+        }
+
+        .grille {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 1.2rem;
+            align-items: start;
+        }
+
+        .grille .carte h3 {
+            color: var(--texte);
+            font-size: 1.15rem;
+        }
+
+        .image-projet {
+            display: block;
+            width: 100%;
+            height: 180px;
+            margin: 1rem 0;
+            border-radius: 6px;
+            object-fit: cover;
+        }
+
+        .etiquettes {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.6rem;
+            margin: 1rem 0 1.25rem;
+            padding: 0;
+            list-style: none;
+        }
+
+        .etiquettes li {
+            padding: 0.4rem 0.7rem;
+            border-radius: 4px;
+            color: #ffffff;
+            background: #7c81e9;
+            font-size: 0.8rem;
+        }
+
+        .bouton-projet {
+            margin-top: 0.3rem;
+            border: 0;
+            cursor: pointer;
+            font: inherit;
+        }
+
+        .actions-projet {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.7rem;
+            align-items: center;
+            margin-top: 0.3rem;
+        }
+
+        .actions-projet .bouton {
+            margin-top: 0;
+        }
+
+        .fenetre-modal[hidden] {
+            display: none;
+        }
+
+        .fenetre-modal {
+            position: fixed;
+            z-index: 10;
+            inset: 0;
+            display: grid;
+            place-items: center;
+            padding: 1.5rem;
+            background: rgba(0, 0, 0, 0.7);
+        }
+
+        .contenu-modal {
+            position: relative;
+            width: min(100%, 620px);
+            max-height: 90vh;
+            overflow: auto;
+            padding: 2rem;
+            border-radius: 8px;
+            background: var(--blanc);
+            box-shadow: 0 8px 30px rgba(0, 0, 0, 0.35);
+        }
+
+        .contenu-modal h2 {
+            margin: 0 2rem 1rem 0;
+            color: var(--orange);
+        }
+
+        .fermer-modal {
+            position: absolute;
+            top: 0.8rem;
+            right: 1rem;
+            border: 0;
+            color: var(--texte);
+            background: transparent;
+            cursor: pointer;
+            font-size: 1.8rem;
+            line-height: 1;
+        }
+
+        .ligne-temps {
+            position: relative;
+            display: grid;
+            gap: 1.5rem;
+            margin-top: 1.5rem;
+            padding-left: 2rem;
+        }
+
+        .ligne-temps::before {
+            position: absolute;
+            top: 0.4rem;
+            bottom: 0.4rem;
+            left: 0.45rem;
+            width: 2px;
+            background: var(--orange);
+            content: "";
+        }
+
+        .etape {
+            position: relative;
+        }
+
+        .etape::before {
+            position: absolute;
+            top: 1.55rem;
+            left: -2rem;
+            width: 0.75rem;
+            height: 0.75rem;
+            border: 3px solid var(--creme);
+            border-radius: 50%;
+            background: var(--orange);
+            box-shadow: 0 0 0 1px var(--orange);
+            content: "";
+        }
+
+        .etape .carte {
+            padding: 1.35rem 1.55rem;
+        }
+
+        .etape h3 {
+            margin-bottom: 0.6rem;
+            color: var(--orange);
+            font-size: 1rem;
+        }
+
+        .etape p + p {
+            margin-top: 0.45rem;
+        }
+
+        footer {
+            padding: 1.5rem;
+            color: var(--gris);
+            border-top: 1px solid var(--bordure);
+            text-align: center;
+            font-size: 0.8rem;
+        }
+
+        @media (max-width: 760px) {
+            .barre-laterale {
+                position: static;
+                width: 100%;
+                padding: 1.3rem 1.2rem;
+            }
+
+            .identite {
+                margin-bottom: 1rem;
+            }
+
+            nav {
+                display: flex;
+                flex-wrap: wrap;
+                justify-content: center;
+                gap: 0.3rem 0.8rem;
+            }
+
+            nav a {
+                padding: 0.25rem;
+            }
+
+            nav a:last-child {
+                margin-top: 0;
+            }
+
+            main,
+            footer {
+                margin-left: 0;
+            }
+
+            .conteneur {
+                width: min(100% - 2.4rem, 1030px);
+            }
+
+            .hero {
+                min-height: auto;
+                padding: 3.5rem 0;
+            }
+
+            .profil,
+            .grille,
+            .contact-contenu {
+                grid-template-columns: 1fr;
+                gap: 2rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <aside class="barre-laterale">
+    <div class="identite">
+            <h2>Sara HAÏBA</h2>
+            <p>Étudiante en BTS SIO<br>Option SLAM</p>
+        </div>
+    <hr class="separateur-lateral">
+    <nav aria-label="Navigation principale">
+        <a href="#accueil">Accueil</a>
+        <a href="#apropos">À propos</a>
+            <a href="#parcours">Parcours</a>
+            <a href="#competences">Compétences</a>
+            <a href="#projets">Projets</a>
+            <a href="#contact">Contact</a>
+        </nav>
+        <hr class="separateur-lateral">
+        <nav class="coordonnees-laterales" aria-label="Coordonnées">
+            <a href="mailto:sara.haiba447@gmail.com">E-mail</a>
+            <a href="tel:+33622416844">06 22 41 68 44</a>
+            <a href="#" title="Lien GitHub à ajouter">GitHub</a>
+            <a href="#" title="Lien LinkedIn à ajouter">LinkedIn</a>
+        </nav>
+    </aside>
+
+    <main>
+        <section id="accueil" class="conteneur hero">
+            <p class="surtitre">Sara haïba</p>
+            <h1>Étudiante en informatique, développement d'applications</h1>
+            <p class="introduction">1re année BTS SIO • Option SLAM</p>
+            <div class="actions">
+                <a class="bouton" href="#projets">Voir les projets</a>
+                <a class="bouton" href="cv.pdf" download="cv.pdf">Voir mon CV</a>
+                <a class="bouton" href="#contact">Me contacter</a>
+            </div>
+        </section>
+
+        <section id="apropos">
+            <div class="conteneur">
+                <h2>À propos de moi</h2>
+                <div class="profil">
+                    <div>
+                        <h3>Profil</h3>
+                        <p class="profil-texte">
+                            Après l'obtention d'un <strong>bac Général</strong> j'ai décidé de poursuivre 
+                            dans <strong>l'informatique</strong>, la voie qui m'a le plus intéréssée lors de ma scolarité. 
+                            Ayant un plus gros intérêt pour ce qui donne vie aux applications et aux sites, 
+                            j'ai naturellement choisi de poursuivre mes études avec un <strong>BTS SIO</strong> 
+                            (Services Informatiques aux Organisations) option <strong>SLAM</strong> (Solutions Logicielles 
+                            et Applications Métiers).<br>
+                            Mon objectif est de me spécialiser dans le <strong>développement web</strong> et
+                            <strong>d'applications</strong>.
+                        </p>
+                    </div>
+                    <article class="carte">
+                        <h3>Recherche de stage</h3>
+                        <p>
+                            Je suis actuellement à la recherche d'un stage de
+                            <strong>4 à 5 semaines</strong> dans le domaine du développement
+                            d'applications et/ou web, à réaliser entre <strong>mai et août 2027</strong>.
+                        </p>
+                    </article>
+                </div>
+            </div>
+        </section>
+
+        <section id="parcours" class="conteneur">
+            <h2>Parcours</h2>
+            <div class="ligne-temps">
+                <article class="etape">
+                    <div class="carte">
+                        <h3>2026 - aujourd'hui</h3>
+                        <p><strong>Première année de BTS SIO option SLAM - Cned</strong></p>
+                        <p>Objectif : progresser en développement et acquérir de l'expérience professionnelle.</p>
+                    </div>
+                </article>
+                <article class="etape">
+                    <div class="carte">
+                        <h3>2025</h3>
+                        <p><strong>Obtention du baccalauréat général - Lycée Pierre Mendès France (77)</strong></p>
+                    </div>
+                </article>
+            </div>
+        </section>
+
+        <section id="competences" class="conteneur">
+            <h2>Compétences - en cours d'acquisition</h2>
+            <div class="grille">
+                <article class="carte">
+                    <h3>Développement Web et Applications</h3>
+                    <ul class="etiquettes">
+                        <li>HTML</li><li>C#</li><li>CSS</li><li>JavaScript</li><li>PHP</li><li>SQL</li><li>Java</li><li>Python</li>
+                    </ul>
+                </article>
+                <article class="carte">
+                    <h3>Outils et Environnements</h3>
+                    <ul class="etiquettes">
+                        <li>Visual Studio</li><li>GitHub</li><li>NetBeans</li><li>Eclipse</li><li>PyCharm</li><li>WampServer</li>
+                        <li>Virtual Box</li><li>WordPress</li>
+                    </ul>
+                </article>
+                <article class="carte">
+                    <h3>Base de données</h3>
+                    <ul class="etiquettes">
+                        <li>MySQL</li><li>PostgreSQL</li><li>MongoDB</li>
+                    </ul>
+                </article>
+            </div>
+        </section>
+
+        <section id="projets" class="conteneur">
+            <h2>Projets scolaires</h2>
+            <div class="grille">
+                <article class="carte">
+                    <h3>Portfolio personnel</h3>
+                    <img class="image-projet" src="projet1.jpg" alt="Illustration du portfolio personnel">
+                    <p>Création d'un site en HTML et CSS pour présenter…</p>
+                    <ul class="etiquettes" aria-label="Technologies utilisées">
+                        <li>HTML</li>
+                        <li>CSS</li>
+                        <li>JavaScript</li>
+                    </ul>
+                    <div class="actions-projet">
+                        <button class="bouton bouton-projet" type="button"
+                            data-titre="Portfolio personnel"
+                            data-description="Création d'un site en HTML et CSS pour présenter mon profil, mes compétences et mon parcours."
+                            data-details="Le site est construit en HTML et CSS, avec une navigation par rubriques et une présentation adaptée aux écrans mobiles. 
+                            Utilisation de JavaScript pour une meilleure interaction.">
+                            En savoir plus
+                        </button>
+                        <a class="bouton" href="#" title="Lien GitHub à ajouter">Projet sur GitHub</a>
+                    </div>
+                </article>
+                <!-- <article class="carte">
+                    <h3>Modèle</h3>
+                    <img class="image-projet" src="echantillon.jpg" alt="Illustration du projet modèle">
+                    <p>Courte description</p>
+                    <ul class="etiquettes" aria-label="Technologies utilisées">
+                        <li>HTML</li>
+                    </ul>
+                    <div class="actions-projet">
+                        <button class="bouton bouton-projet" type="button"
+                            data-titre="Modèle"
+                            data-description="Cadre de réalisation."
+                            data-details="Description détaillée.">
+                            En savoir plus
+                        </button>
+                        <a class="bouton" href="#" title="Lien GitHub à ajouter">Projet sur GitHub</a>
+                    </div>
+                </article> -->
+                <article class="carte">
+                    <h3>Projet à venir</h3>
+                    <p>Cette rubrique sera complétée avec mes projets réalisés en cours.</p>
+                </article>
+            </div>
+        </section>
+
+        <section id="projets" class="conteneur">
+            <h2>Projets professionels</h2>
+            <div class="grille">
+                <article class="carte">
+                    <h3>Projet à venir</h3>
+                    <p>Cette rubrique sera complétée avec mes projets réalisés en stage.</p>
+                </article>
+            </div>
+        </section>
+
+        <section id="contact" class="conteneur">
+            <h2>Contact</h2>
+            <div class="carte">
+                <p>Vous souhaitez échanger avec moi au sujet d'un projet ou d'un stage ?</p>
+                <div class="contact-actions">
+                    <a class="bouton" href="mailto:sara.haiba447@gmail.com">Mail</a>
+                    <a class="bouton" href="tel:+33622416844">06 22 41 68 44</a>
+                    <a class="bouton" href="#" title="Lien LinkedIn à ajouter">LinkedIn</a>
+                    <a class="bouton" href="#" title="Lien GitHub à ajouter">GitHub</a>
+                </div>
+                <div class="contact-contenu">
+                    <div class="contact-bloc">
+                        <h3>Ma ville : Savigny-le-Temple</h3>
+                        <iframe
+                            class="carte-interactive"
+                            src="https://www.openstreetmap.org/export/embed.html?bbox=2.56%2C48.57%2C2.61%2C48.62&amp;layer=mapnik&amp;marker=48.594%2C2.584"
+                            title="Carte interactive de Savigny-le-Temple"
+                            loading="lazy">
+                        </iframe>
+                    </div>
+                    <div class="contact-bloc">
+                        <h3>Envoyer un message</h3>
+                        <form class="formulaire-contact" id="formulaire-contact">
+                            <label for="nom">Nom
+                                <input id="nom" name="nom" type="text" autocomplete="name" required>
+                            </label>
+                            <label for="email">E-mail
+                                <input id="email" name="email" type="email" autocomplete="email" required>
+                            </label>
+                            <label for="message">Message
+                                <textarea id="message" name="message" required></textarea>
+                            </label>
+                            <button class="bouton bouton-projet" type="submit">Envoyer le message</button>
+                            <p class="message-formulaire" id="message-formulaire" aria-live="polite">
+                                Le formulaire ouvrira votre logiciel de messagerie.
+                            </p>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <p>© 2026 Sara HAÏBA - Portfolio BTS SIO SLAM</p>
+    </footer>
+
+    <div class="fenetre-modal" id="projet-modal" role="dialog" aria-modal="true" aria-labelledby="modal-titre" hidden>
+        <div class="contenu-modal">
+            <button class="fermer-modal" type="button" aria-label="Fermer la fenêtre">×</button>
+            <h2 id="modal-titre"></h2>
+            <p id="modal-description"></p>
+            <p id="modal-details"></p>
+        </div>
+    </div>
+
+    <script>
+        const modal = document.querySelector("#projet-modal");
+        const modalTitle = document.querySelector("#modal-titre");
+        const modalDescription = document.querySelector("#modal-description");
+        const modalDetails = document.querySelector("#modal-details");
+        const closeButton = document.querySelector(".fermer-modal");
+        const projectButtons = document.querySelectorAll(".bouton-projet");
+        const contactForm = document.querySelector("#formulaire-contact");
+        let lastFocusedElement;
+
+        function closeModal() {
+            modal.hidden = true;
+            document.body.style.overflow = "";
+            if (lastFocusedElement) {
+                lastFocusedElement.focus();
+            }
+        }
+
+        projectButtons.forEach((button) => {
+            button.addEventListener("click", () => {
+                lastFocusedElement = button;
+                modalTitle.textContent = button.dataset.titre;
+                modalDescription.textContent = button.dataset.description;
+                modalDetails.textContent = button.dataset.details;
+                modal.hidden = false;
+                document.body.style.overflow = "hidden";
+                closeButton.focus();
+            });
+        });
+
+        closeButton.addEventListener("click", closeModal);
+        modal.addEventListener("click", (event) => {
+            if (event.target === modal) {
+                closeModal();
+            }
+        });
+        document.addEventListener("keydown", (event) => {
+            if (event.key === "Escape" && !modal.hidden) {
+                closeModal();
+            }
+        });
+
+        contactForm.addEventListener("submit", (event) => {
+            event.preventDefault();
+            const formData = new FormData(contactForm);
+            const subject = encodeURIComponent(`Message de ${formData.get("nom")}`);
+            const body = encodeURIComponent(
+                `Nom : ${formData.get("nom")}\nE-mail : ${formData.get("email")}\n\n${formData.get("message")}`
+            );
+            window.location.href = `mailto:sara.haiba447@gmail.com?subject=${subject}&body=${body}`;
+        });
+    </script>
+</body>
+</html>
